@@ -1,18 +1,9 @@
 defmodule StringUpcaser do
-  @moduledoc """
-  Documentation for StringUpcaser.
-  """
+  import String
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> StringUpcaser.hello
-      :world
-
-  """
-  def hello do
-    :world
+  def start do
+    receive do
+      {inputString, from} -> send(from, {:ok, upcase(inputString)})
+    end
   end
 end

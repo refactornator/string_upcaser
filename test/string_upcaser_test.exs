@@ -2,7 +2,9 @@ defmodule StringUpcaserTest do
   use ExUnit.Case
   doctest StringUpcaser
 
-  test "the truth" do
-    assert 1 + 1 == 2
+  test "it responds to a message with a string with the uppercase represenation of that string" do
+    upcaser = spawn(StringUpcaser, :start, [])
+    send(upcaser, {"grempa", self()})
+    assert_receive {:ok, "GREMPA"}
   end
 end
