@@ -6,5 +6,7 @@ defmodule StringUpcaserTest do
     upcaser = spawn(StringUpcaser, :start, [])
     send(upcaser, {"grempa", self()})
     assert_receive {:ok, "GREMPA"}
+    send(upcaser, {"boo", self()})
+    assert_receive {:ok, "BOO"}
   end
 end
